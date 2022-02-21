@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useMutation, gql } from '@apollo/client';
 import NoteForm from '../components/NoteForm';
-import { GET_NOTES } from '../gql/query';
+import { GET_NOTES, GET_MY_NOTES } from '../gql/query';
 
 //gql-запрос newNote
 const NEW_NOTE = gql`
@@ -30,8 +30,8 @@ const NewNote = (props) => {
     });
 
     const [data, { loading, error }] = useMutation(NEW_NOTE, {
-        //повторно получаем запрос GET_NOTES чтобы обновить кэш
-        refetchQueries: [{query: GET_NOTES}],
+        //повторно получаем запрос GET_NOTES и GET_MY_NOTES чтобы обновить кэш
+        refetchQueries: [{query: GET_NOTES}, {query: GET_MY_NOTES}],
         onCompleted: data => {
             //после заверш-я, перенапр-м польз-ля на страницу заметки
             props.history.push(`note/${data.newNote.id}`);
