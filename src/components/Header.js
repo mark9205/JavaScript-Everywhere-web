@@ -29,6 +29,7 @@ const UserState = styled.div`
 const Header = props => {
     //хук запроса для проверки сост-я авториз-и польз-ля
     const { data, client } = useQuery(IS_LOGGED_IN);
+
     return (
         <HeaderBar>
             <img src={logo} alt="Notedly logo" height="40" />
