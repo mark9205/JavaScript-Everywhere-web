@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { useQuery, gql } from '@apollo/client';
 import { Link, withRouter } from 'react-router-dom';
 import ButtonAsLink from './ButtonAsLink';
+import { GET_ME, IS_LOGGED_IN } from '../gql/query';
 
 const HeaderBar = styled.header`
     width: 100%;
@@ -24,17 +25,10 @@ const LogoText = styled.h1`
 const UserState = styled.div`
     margin-left: auto;
 `;
-//локальный запрос
-const IS_LOGGED_IN = gql`
-    {
-        isLoggedIn @client
-    }
-`;
 
 const Header = props => {
     //хук запроса для проверки сост-я авториз-и польз-ля
     const { data, client } = useQuery(IS_LOGGED_IN);
-
     return (
         <HeaderBar>
             <img src={logo} alt="Notedly logo" height="40" />
@@ -56,7 +50,7 @@ const Header = props => {
                         (<Link to={'/signin'}>Sign In</Link> or{' '}
                          <Link to={'/signup'}>Sign Up</Link>
                         )
-                    </p> 
+                    </p>
                 }
             </UserState>
         </HeaderBar>
