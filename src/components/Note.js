@@ -45,6 +45,8 @@ const Note = ({ note }) => {
                     <em>by </em>
                     {note.author.username} <br />
                     {format(note.createdAt, 'MMM Do YYYY')}
+                    <br />
+                    {note.content}
                 </MetaInfo>
                 {data.isLoggedIn 
                 ? (
